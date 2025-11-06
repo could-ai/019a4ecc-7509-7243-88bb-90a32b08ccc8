@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:carousel_slider/carousel_slider.dart' as cs;
 import 'package:couldai_user_app/models/comic_model.dart';
 import 'package:couldai_user_app/widgets/comic_card.dart';
 
@@ -112,8 +112,8 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 1. Carousel Banner
-          CarouselSlider(
-            options: CarouselOptions(
+          cs.CarouselSlider(
+            options: cs.CarouselOptions(
               height: 200.0,
               autoPlay: true,
               enlargeCenterPage: true,
