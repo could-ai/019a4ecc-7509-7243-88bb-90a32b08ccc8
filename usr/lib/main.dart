@@ -3,6 +3,9 @@ import 'package:couldai_user_app/screens/home_screen.dart';
 import 'package:couldai_user_app/screens/leaderboard_screen.dart';
 import 'package:couldai_user_app/screens/library_screen.dart';
 import 'package:couldai_user_app/screens/all_series_screen.dart';
+import 'package:couldai_user_app/screens/notification_screen.dart';
+import 'package:couldai_user_app/screens/profile_screen.dart';
+import 'package:couldai_user_app/screens/search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -71,19 +74,28 @@ class _MainScreenState extends State<MainScreen> {
               actions: [
                 IconButton(
                   icon: const Icon(Icons.search),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.notifications),
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationScreen()));
+                  },
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 16.0),
-                  child: CircleAvatar(
-                    radius: 16,
-                    // Placeholder for profile avatar
-                    backgroundImage:
-                        NetworkImage('https://via.placeholder.com/150'),
+                 Padding(
+                  padding: const EdgeInsets.only(right: 16.0),
+                  child: GestureDetector(
+                    onTap: (){
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+                    },
+                    child: const CircleAvatar(
+                      radius: 16,
+                      // Placeholder for profile avatar
+                      backgroundImage:
+                          NetworkImage('https://via.placeholder.com/150'),
+                    ),
                   ),
                 ),
               ],

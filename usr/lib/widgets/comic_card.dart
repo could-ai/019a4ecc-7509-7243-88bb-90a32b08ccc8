@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:couldai_user_app/models/comic_model.dart';
+import 'package:couldai_user_app/screens/comic_detail_screen.dart';
 
 class ComicCard extends StatelessWidget {
   final Comic comic;
@@ -12,69 +13,79 @@ class ComicCard extends StatelessWidget {
     final bool showNewBadge = DateTime.now().difference(comic.createdAt).inDays < 7;
     final bool showUpdateBadge = DateTime.now().difference(comic.updatedAt).inHours < 24;
 
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
-      elevation: 2,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Stack(
-              alignment: Alignment.topLeft,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(comic.coverUrl),
-                      fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ComicDetailScreen(comic: comic),
+          ),
+        );
+      },
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        elevation: 2,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Stack(
+                alignment: Alignment.topLeft,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(comic.coverUrl),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                if (showNewBadge || showUpdateBadge)
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (showNewBadge) _buildBadge('NEW', Colors.green),
-                        if (showUpdateBadge) _buildBadge('UPDATE', Colors.orange),
-                      ],
+                  if (showNewBadge || showUpdateBadge)
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (showNewBadge) _buildBadge('NEW', Colors.green),
+                          if (showUpdateBadge) _buildBadge('UPDATE', Colors.orange),
+                        ],
+                      ),
                     ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    comic.title,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-              ],
+                  const SizedBox(height: 4),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(comic.genre, style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                      Row(
+                        children: [
+                          const Icon(Icons.star, color: Colors.amber, size: 14),
+                          Text(comic.rating.toString(), style: const TextStyle(fontSize: 12)),
+                        ],
+                      ),
+                    ],
+                  ),
+                   const SizedBox(height: 4),
+                   Text('${comic.chapterCount} Chapters', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  comic.title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(comic.genre, style: const TextStyle(fontSize: 12, color: Colors.grey)),
-                    Row(
-                      children: [
-                        const Icon(Icons.star, color: Colors.amber, size: 14),
-                        Text(comic.rating.toString(), style: const TextStyle(fontSize: 12)),
-                      ],
-                    ),
-                  ],
-                ),
-                 const SizedBox(height: 4),
-                 Text('${comic.chapterCount} Chapters', style: const TextStyle(fontSize: 12, color: Colors.grey)),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
