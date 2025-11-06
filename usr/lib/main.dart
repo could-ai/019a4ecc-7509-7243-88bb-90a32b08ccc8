@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
-          elevation: 0,
+          elevation: 1,
           iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(
             color: Colors.black,
@@ -61,28 +61,34 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Hide the main AppBar for screens that have their own (like Library and Leaderboard)
+    final bool showMainAppBar = _selectedIndex == 0;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CozyCanz'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: CircleAvatar(
-              radius: 16,
-              // Placeholder for profile avatar
-              backgroundImage: NetworkImage('https://via.placeholder.com/150'),
-            ),
-          ),
-        ],
-      ),
+      appBar: showMainAppBar
+          ? AppBar(
+              title: const Text('CozyCanz'),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.notifications),
+                  onPressed: () {},
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right: 16.0),
+                  child: CircleAvatar(
+                    radius: 16,
+                    // Placeholder for profile avatar
+                    backgroundImage:
+                        NetworkImage('https://via.placeholder.com/150'),
+                  ),
+                ),
+              ],
+            )
+          : null,
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
