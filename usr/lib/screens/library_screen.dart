@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:couldai_user_app/models/comic_model.dart';
+import 'package:couldai_user_app/models/chapter_model.dart';
 import 'package:couldai_user_app/widgets/comic_card.dart';
 
 class LibraryScreen extends StatelessWidget {
@@ -10,7 +11,10 @@ class LibraryScreen extends StatelessWidget {
     // Mock data for library
     final List<Comic> historyComics = [
       Comic(
+        title: 'Solo Leveling',
         coverUrl: 'https://via.placeholder.com/200x300.png?text=Comic+2',
+        author: 'Chu-Gong',
+        description: 'A weak hunter becomes the strongest.',
         genre: 'Fantasy',
         rating: 4.8,
         status: 'Ongoing',
@@ -18,12 +22,21 @@ class LibraryScreen extends StatelessWidget {
         type: 'Manga',
         isNew: false,
         isUpdated: true,
-        title: 'Solo Leveling',
-        updatedAt: DateTime.now().subtract(const Duration(hours: 5)),
         createdAt: DateTime.now().subtract(const Duration(days: 100)),
+        updatedAt: DateTime.now().subtract(const Duration(hours: 5)),
+        chapters: [
+          Chapter(
+            title: 'Chapter 1',
+            releaseDate: DateTime.now().subtract(const Duration(days: 80)),
+            pageUrls: ['https://via.placeholder.com/600x900.png?text=Page+1'],
+          ),
+        ],
       ),
       Comic(
+        title: 'One Piece',
         coverUrl: 'https://via.placeholder.com/200x300.png?text=Comic+4',
+        author: 'Eiichiro Oda',
+        description: 'Pirates searching for the ultimate treasure.',
         genre: 'Adventure',
         rating: 4.9,
         status: 'Ongoing',
@@ -31,15 +44,24 @@ class LibraryScreen extends StatelessWidget {
         type: 'Manga',
         isNew: false,
         isUpdated: true,
-        title: 'One Piece',
-        updatedAt: DateTime.now().subtract(const Duration(hours: 20)),
         createdAt: DateTime.now().subtract(const Duration(days: 5000)),
+        updatedAt: DateTime.now().subtract(const Duration(hours: 20)),
+        chapters: [
+          Chapter(
+            title: 'Chapter 1',
+            releaseDate: DateTime.now().subtract(const Duration(days: 4900)),
+            pageUrls: ['https://via.placeholder.com/600x900.png?text=Page+1'],
+          ),
+        ],
       ),
     ];
 
     final List<Comic> bookmarkedComics = [
-       Comic(
+      Comic(
+        title: 'The Beginning After The End',
         coverUrl: 'https://via.placeholder.com/200x300.png?text=Comic+1',
+        author: 'TurtleMe',
+        description: 'A story about a king reincarnated into a fantasy world.',
         genre: 'Action',
         rating: 4.5,
         status: 'Ongoing',
@@ -47,12 +69,21 @@ class LibraryScreen extends StatelessWidget {
         type: 'Manhwa',
         isNew: true,
         isUpdated: false,
-        title: 'The Beginning After The End',
-        updatedAt: DateTime.now().subtract(const Duration(hours: 10)),
         createdAt: DateTime.now().subtract(const Duration(days: 2)),
+        updatedAt: DateTime.now().subtract(const Duration(hours: 10)),
+        chapters: [
+          Chapter(
+            title: 'Chapter 1',
+            releaseDate: DateTime.now().subtract(const Duration(days: 100)),
+            pageUrls: ['https://via.placeholder.com/600x900.png?text=Page+1'],
+          ),
+        ],
       ),
-       Comic(
+      Comic(
+        title: 'Spy x Family',
         coverUrl: 'https://via.placeholder.com/200x300.png?text=Comic+6',
+        author: 'Tatsuya Endo',
+        description: 'A spy, assassin, and telepath form a fake family.',
         genre: 'Comedy',
         rating: 4.7,
         status: 'Ongoing',
@@ -60,12 +91,21 @@ class LibraryScreen extends StatelessWidget {
         type: 'Manga',
         isNew: true,
         isUpdated: true,
-        title: 'Spy x Family',
-        updatedAt: DateTime.now().subtract(const Duration(hours: 1)),
         createdAt: DateTime.now().subtract(const Duration(days: 6)),
+        updatedAt: DateTime.now().subtract(const Duration(hours: 1)),
+        chapters: [
+          Chapter(
+            title: 'Chapter 1',
+            releaseDate: DateTime.now().subtract(const Duration(days: 5)),
+            pageUrls: ['https://via.placeholder.com/600x900.png?text=Page+1'],
+          ),
+        ],
       ),
-       Comic(
+      Comic(
+        title: 'Tower of God',
         coverUrl: 'https://via.placeholder.com/200x300.png?text=Comic+5',
+        author: 'SIU',
+        description: 'Climbing the Tower to reunite with a loved one.',
         genre: 'Sci-Fi',
         rating: 4.0,
         status: 'Hiatus',
@@ -73,9 +113,15 @@ class LibraryScreen extends StatelessWidget {
         type: 'Manhwa',
         isNew: false,
         isUpdated: false,
-        title: 'Tower of God',
-        updatedAt: DateTime.now().subtract(const Duration(days: 90)),
         createdAt: DateTime.now().subtract(const Duration(days: 400)),
+        updatedAt: DateTime.now().subtract(const Duration(days: 90)),
+        chapters: [
+          Chapter(
+            title: 'Chapter 1',
+            releaseDate: DateTime.now().subtract(const Duration(days: 350)),
+            pageUrls: ['https://via.placeholder.com/600x900.png?text=Page+1'],
+          ),
+        ],
       ),
     ];
 
